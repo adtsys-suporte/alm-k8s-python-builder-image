@@ -17,3 +17,9 @@ RUN curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cl
 
 FROM google/cloud-sdk as extras
 COPY --from=base / .
+
+# extra dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+		jq \
+	&& rm -rf /var/lib/apt/lists/*
+  
